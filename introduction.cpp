@@ -25,3 +25,20 @@ void list_options() {
          << "4. Login and Registration for Staff" << endl
          << "5. Admin Login" << endl;
 }
+int get_option() {
+    int option;
+    bool valid = false;
+
+    while (!valid) {
+        cout << "Enter the task number you want to do: ";
+        cin >> option;
+
+        if (option >= 1 && option <= 5) {
+            valid = true;
+        } else {
+            cout << "Please enter a valid task number!!" << endl;
+        }
+    }
+    return option;
+}
+
