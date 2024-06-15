@@ -9,6 +9,7 @@
 int main()
 {
     printHeading();
+    list_options();
 }
 
 
