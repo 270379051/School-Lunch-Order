@@ -12,4 +12,5 @@
 using namespace std;
 void printHeading();
 void list_options();
+int get_option();
 #endif /* introduction_hpp */
