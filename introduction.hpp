@@ -13,4 +13,5 @@ using namespace std;
 void printHeading();
 void list_options();
 int get_option();
+void login_registerparent() ;
 #endif /* introduction_hpp */
