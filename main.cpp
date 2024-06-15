@@ -13,7 +13,7 @@ int main()
         printHeading();
         list_options();
         get_options();
-        
+        login_registerparent();
 }
 
 
