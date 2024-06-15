@@ -41,4 +41,19 @@ int get_option() {
     }
     return option;
 }
+void login_registerparent() {
+    int option1;
+    cout << "1. Login" << endl << "2. Registration" << endl;
+    cout << "Enter 1 for Login and 2 for Registration: ";
+    cin >> option1;
+    cin.ignore(); // Clear the newline character from the input buffer
+    if (option1 == 1) {
+        parentlogin_here();
+    } else if (option1 == 2) {
+        parent_registration();
+    } else {
+        cout << "Please enter a valid option!" << endl;
+        login_registerparent();
+    }
+}
 
