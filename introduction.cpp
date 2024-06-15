@@ -18,3 +18,10 @@ void printHeading() {
     cout << "|                                                                                                                                   |" << endl;
     cout << "------------------------------------------------------------------------------------------------------------------------------------" << endl;
 }
+void list_options() {
+    cout << "1. Weekly Menu" << endl
+         << "2. Discounts" << endl
+         << "3. Login and Registration for Parents" << endl
+         << "4. Login and Registration for Staff" << endl
+         << "5. Admin Login" << endl;
+}
