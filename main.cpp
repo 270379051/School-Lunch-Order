@@ -8,8 +8,12 @@
 #include <iostream>
 int main()
 {
-    printHeading();
-    list_options();
+   
+   
+        printHeading();
+        list_options();
+        get_options();
+        
 }
 
 
