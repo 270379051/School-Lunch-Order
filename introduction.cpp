@@ -20,10 +20,12 @@ void printHeading() {
 }
 void list_options() {
     cout << "1. Weekly Menu" << endl
-         << "2. Discounts" << endl
-         << "3. Login and Registration for Parents" << endl
-         << "4. Login and Registration for Staff" << endl
-         << "5. Admin Login" << endl;
+    cout<< "2. Discounts" << endl
+    cout << "3. Login and Registration for Parents" << endl
+    cout << "4. Login and Registration for Staff" << endl
+     cout<< "5. Admin Login" << endl;
+    cout << "6. Contact Details" << endl;
+    
 }
 int get_option() {
     int option;
