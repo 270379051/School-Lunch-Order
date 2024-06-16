@@ -56,4 +56,45 @@ void login_registerparent() {
         login_registerparent();
     }
 }
+void parent_registration() {
+    Details temp;
 
+    cout << "Enter full name: ";
+    cin.ignore(); // Ignore any leftover newline character in the input buffer
+    getline(cin, temp.name);
+
+    cout << "Enter gender (M for male / F for female): ";
+    cin >> temp.gender;
+    cin.ignore(); // Clear the newline character from the input buffer
+
+    cout << "Enter date of birth (DOB): ";
+    getline(cin, temp.DOB);
+
+    cout << "Enter contact number: ";
+    getline(cin, temp.contact);
+
+    cout << "Enter Visa card number: ";
+    getline(cin, temp.visacardnumber);
+
+    cout << "Enter Visa card expiry date: ";
+    getline(cin, temp.visacardexpiry);
+
+    cout << "Enter your username: ";
+    getline(cin, temp.username);
+
+    password_check(temp);
+
+    parentinfo.push_back(temp);
+
+    cout << "\nPlease check registered details" << endl;
+    for (const auto& parent : parentinfo) {
+        cout << "Full name: " << parent.name << endl;
+        cout << "Gender: " << parent.gender << endl;
+        cout << "Date of Birth: " << parent.DOB << endl;
+        cout << "Contact number: " << parent.contact << endl;
+        cout << "Visa card number: " << parent.visacardnumber << endl;
+        cout << "Visa card expiry date: " << parent.visacardexpiry << endl;
+        cout << "Username: " << parent.username << endl;
+        cout << "--------------------------------------" << endl;
+    }
+}
