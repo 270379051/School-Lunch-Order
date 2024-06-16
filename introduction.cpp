@@ -120,3 +120,19 @@ void parentlogin_here() {
             break;
         }
     }
+void admin_login() {
+    string username, password;
+    cout << "Enter admin username: ";
+    cin >> username;
+    cin.ignore(); // Clear the newline character from the input buffer
+    cout << "Enter admin password: ";
+    getline(cin, password);
+
+    if (username == ADMIN_USERNAME && password == ADMIN_PASSWORD) {
+        cout << "Admin login successful!" << endl;
+        // Placeholder for admin functionalities
+        cout << "Welcome, Admin! [Admin functionalities will be implemented here]" << endl;
+    } else {
+        cout << "Invalid admin credentials. Please try again." << endl;
+    }
+}
