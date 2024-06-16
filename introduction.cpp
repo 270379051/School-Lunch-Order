@@ -195,3 +195,13 @@ void weekly_menu() {
     }
     cout << "+------------------------------+" << endl;
 }
+void display_discounts() {
+    cout << "+==============================+" << endl;
+    cout << "|        Discounts             |" << endl;
+    cout << "+==============================+" << endl;
+    cout << "10% off for 5 or more orders!" << endl;
+    cout << "Contact us for more bulk order discounts." << endl;
+    cout << "+==============================+" << endl;
+}
+
+
