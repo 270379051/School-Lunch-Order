@@ -25,6 +25,10 @@ int main()
                 printHeading();
                 admin_login();
                 break;
+           case 6:
+                printHeading();
+                contact_details();
+                break;
 
             default:
                 cout << "Invalid option!" << endl;
