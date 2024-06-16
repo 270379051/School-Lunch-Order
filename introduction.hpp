@@ -39,5 +39,6 @@ void contact_details();
 int getCurrentDayOfWeek();
 void weekly_menu();
 void display_discounts();
+void void password_check(Details& temp)
 
 #endif /* introduction_hpp */
