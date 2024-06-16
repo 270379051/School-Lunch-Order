@@ -201,7 +201,7 @@ void display_discounts() {
     cout << "+==============================+" << endl;
     cout << "10% off for 5 or more orders!" << endl;
     cout << "Contact us for more bulk order discounts." << endl;
-  
+  cout << "+==============================+" << endl;
 }
 void password_check(Details& temp) {
     string password;
@@ -215,6 +215,92 @@ void password_check(Details& temp) {
         cout << "Your passwords do not match! Please try again." << endl;
         password_check(temp); // Recursive call to try again
     }
-}  cout << "+==============================+" << endl;
+}  
+void staff_registration() {
+    Details temp1;
 
+    cout << "Enter full name: ";
+    getline(cin, temp1.name);
+
+    cout << "Enter gender (M for male / F for female): ";
+    cin >> temp1.gender;
+    cin.ignore(); // Clear the newline character from the input buffer
+
+    cout << "Enter date of birth (DOB): ";
+    getline(cin, temp1.DOB);
+
+    cout << "Enter contact number: ";
+    getline(cin, temp1.contact);
+
+    cout << "Enter Visa card number: ";
+    getline(cin, temp1.visacardnumber);
+
+    cout << "Enter Visa card expiry date: ";
+    getline(cin, temp1.visacardexpiry);
+
+    cout << "Enter your username: ";
+    getline(cin, temp1.username);
+
+    password_check(temp1);
+
+    staffinfo.push_back(temp1);
+
+    for (int i = 0; i < staffinfo.size(); i++) {
+        if (temp1.username == staffinfo[i].username) {
+            cout << "Full name: " << staffinfo[i].name << endl;
+            cout << "Gender: " << staffinfo[i].gender << endl;
+            cout << "Date of Birth: " << staffinfo[i].DOB << endl;
+            cout << "Contact number: " << staffinfo[i].contact << endl;
+            cout << "Visa card number: " << staffinfo[i].visacardnumber << endl;
+            cout << "Visa card expiry date: " << staffinfo[i].visacardexpiry << endl;
+            cout << "Username: " << staffinfo[i].username << endl;
+            cout << "--------------------------------------" << endl;
+        }
+    }
+}
+
+void stafflogin_here() {
+    string username, password;
+    cout << "Enter your username: ";
+    cin >> username;
+    cin.ignore(); // Clear the newline character from the input buffer
+
+    bool user_found = false;
+    for (auto& staff : staffinfo) {
+        if (username == staff.username) {
+            user_found = true;
+            cout << "Enter your password: ";
+            getline(cin, password);
+
+            if (password == staff.password) {
+                cout << "Hello! " << staff.name << ", you logged in successfully!" << endl;
+            } else {
+                cout << "Incorrect password! Please try again." << endl;
+                // Ideally, you should implement a limited number of retries to avoid infinite loop
+            }
+            break;
+        }
+    }
+
+    if (!user_found) {
+        cout << "You have entered the wrong username! Please try again!" << endl;
+        // Implement a limited number of retries to avoid infinite loop
+    }
+}
+
+void login_registerstaff() {
+    int option1;
+    cout << "1. Login" << endl << "2. Registration" << endl;
+    cout << "Enter 1 for Login and 2 for Registration: ";
+    cin >> option1;
+    cin.ignore(); // Clear the newline character from the input buffer
+    if (option1 == 1) {
+        stafflogin_here();
+    } else if (option1 == 2) {
+        staff_registration();
+    } else {
+        cout << "Please enter a valid option!" << endl;
+        login_registerstaff();
+    }
+}
 
