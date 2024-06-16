@@ -37,5 +37,7 @@ void parentlogin_here();
 void admin_login();
 void contact_details();
 int getCurrentDayOfWeek();
-void weekly_menu() 
+void weekly_menu();
+void display_discounts();
+
 #endif /* introduction_hpp */
