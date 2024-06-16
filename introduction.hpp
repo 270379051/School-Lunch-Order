@@ -20,6 +20,11 @@ struct Details {
     string password;
     string username;
 };
+struct MenuItem {
+    string name;
+    double price;
+};
+
 extern vector<Details> parentinfo;
 const string ADMIN_USERNAME = "admin@thelunchspot";
 const string ADMIN_PASSWORD = "admin123";
@@ -31,4 +36,6 @@ void parent_registration();
 void parentlogin_here();
 void admin_login();
 void contact_details();
+int getCurrentDayOfWeek();
+void weekly_menu() 
 #endif /* introduction_hpp */
