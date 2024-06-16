@@ -10,10 +10,25 @@
 
 #include <iostream>
 using namespace std;
+struct Details {
+    string name;
+    char gender;
+    string DOB;
+    string contact;
+    string visacardnumber;
+    string visacardexpiry;
+    string password;
+    string username;
+};
+extern vector<Details> parentinfo;
+const string ADMIN_USERNAME = "admin@thelunchspot";
+const string ADMIN_PASSWORD = "admin123";
 void printHeading();
 void list_options();
 int get_option();
 void login_registerparent() ;
 void parent_registration();
 void parentlogin_here();
+void admin_login();
+
 #endif /* introduction_hpp */
