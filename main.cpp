@@ -19,6 +19,11 @@ int main()
            case 1:
                printheading();
                weekly_menu();
+              break;
+           case 2:
+               printheading();
+               display_discounts();
+              break;
             case 3:
                 printHeading();
                 login_registerparent();
