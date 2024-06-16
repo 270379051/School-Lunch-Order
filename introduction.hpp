@@ -14,4 +14,5 @@ void printHeading();
 void list_options();
 int get_option();
 void login_registerparent() ;
+void parent_registration();
 #endif /* introduction_hpp */
