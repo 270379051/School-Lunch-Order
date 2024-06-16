@@ -98,3 +98,25 @@ void parent_registration() {
         cout << "--------------------------------------" << endl;
     }
 }
+void parentlogin_here() {
+    string username, password;
+    cout << "Enter your username: ";
+    cin >> username;
+    cin.ignore(); // Clear the newline character from the input buffer
+
+    bool user_found = false;
+    for (auto& parent : parentinfo) {
+        if (username == parent.username) {
+            user_found = true;
+            cout << "Enter your password: ";
+            getline(cin, password);
+
+            if (password == parent.password) {
+                cout << "Hello! " << parent.name << ", you logged in successfully!" << endl;
+            } else {
+                cout << "Incorrect password! Please try again." << endl;
+                // Ideally, you should implement a limited number of retries to avoid infinite loop
+            }
+            break;
+        }
+    }
