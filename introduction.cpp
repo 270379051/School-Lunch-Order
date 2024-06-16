@@ -136,3 +136,12 @@ void admin_login() {
         cout << "Invalid admin credentials. Please try again." << endl;
     }
 }
+void contact_details() {
+    cout << "_____________________________________________________________________________________________________________________________________" << endl;
+    cout << "\t\t\t\t\t The Lunch Spot\t **All Rights Reserved**" << endl;
+    cout << "_____________________________________________________________________________________________________________________________________" << endl;
+    cout << "Welcome to our School Lunch Service!\nWe believe in Quality and Customer Satisfaction.\n";
+    cout << "\n\nContact Details- 0234123443 , 0787890907\n";
+    cout << "223 VDR ROAD , AUXXL\n";
+    cout << "_____________________________________________________________________________________________________________________________________" << endl;
+}
