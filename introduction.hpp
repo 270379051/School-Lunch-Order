@@ -30,5 +30,5 @@ void login_registerparent() ;
 void parent_registration();
 void parentlogin_here();
 void admin_login();
-
+void contact_details();
 #endif /* introduction_hpp */
