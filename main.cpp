@@ -16,7 +16,9 @@ int main()
         int selected_option = get_option(); // Get the user's task choice
         switch (selected_option) {
             
-         
+           case 1:
+               printheading();
+               weekly_menu();
             case 3:
                 printHeading();
                 login_registerparent();
