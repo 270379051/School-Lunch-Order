@@ -201,7 +201,20 @@ void display_discounts() {
     cout << "+==============================+" << endl;
     cout << "10% off for 5 or more orders!" << endl;
     cout << "Contact us for more bulk order discounts." << endl;
-    cout << "+==============================+" << endl;
+  
 }
+void password_check(Details& temp) {
+    string password;
+    cout << "Enter your password (no spaces allowed): ";
+    getline(cin, temp.password);
+    cout << "Confirm your password: ";
+    getline(cin, password);
+    if (password == temp.password) {
+        cout << "You have successfully registered!" << endl;
+    } else {
+        cout << "Your passwords do not match! Please try again." << endl;
+        password_check(temp); // Recursive call to try again
+    }
+}  cout << "+==============================+" << endl;
 
 
