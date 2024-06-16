@@ -21,6 +21,10 @@ int main()
                 printHeading();
                 login_registerparent();
                 break;
+            case 5:
+                printHeading();
+                admin_login();
+                break;
 
             default:
                 cout << "Invalid option!" << endl;
@@ -31,10 +35,6 @@ int main()
         cin.ignore();
         cin.get();
     }
-        printHeading();
-        list_options();
-        get_option();
-        login_registerparent();
-}
+       
 
 
