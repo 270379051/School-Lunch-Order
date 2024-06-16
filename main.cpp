@@ -5,7 +5,7 @@
 //  Created by Harshdeep Singh on 15/06/2024.
 //
 
-#include <iostream>
+#include "introduction.hpp"
 int main()
 {
    
@@ -27,6 +27,10 @@ int main()
             case 3:
                 printHeading();
                 login_registerparent();
+                break;
+           case 4:
+                printHeading();
+               login_registerstaff();
                 break;
             case 5:
                 printHeading();
