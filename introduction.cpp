@@ -18,14 +18,14 @@ void printHeading() {
     cout << "|                                                                                                                                   |" << endl;
     cout << "------------------------------------------------------------------------------------------------------------------------------------" << endl;
 }
+// List of options
 void list_options() {
     cout << "1. Weekly Menu" << endl
-    cout<< "2. Discounts" << endl
-    cout << "3. Login and Registration for Parents" << endl
-    cout << "4. Login and Registration for Staff" << endl
-     cout<< "5. Admin Login" << endl;
-    cout << "6. Contact Details" << endl;
-    
+         << "2. Today's Menu" << endl
+         << "3. Discounts" << endl
+         << "4. Login and Registration for Parents" << endl
+         << "5. Login and Registration for Staff" << endl
+         << "6. Admin Login" << endl;
 }
 int get_option() {
     int option;
@@ -43,27 +43,38 @@ int get_option() {
     }
     return option;
 }
-void login_registerparent() {
+void login_registerparent() {// function for parent to choose login or register
     int option1;
-    cout << "1. Login" << endl << "2. Registration" << endl;
-    cout << "Enter 1 for Login and 2 for Registration: ";
-    cin >> option1;
-    cin.ignore(); // Clear the newline character from the input buffer
-    if (option1 == 1) {
-        parentlogin_here();
-    } else if (option1 == 2) {
-        parent_registration();
-    } else {
-        cout << "Please enter a valid option!" << endl;
-        login_registerparent();
+    while (true) {
+        cout << "1. Login" << endl << "2. Registration" << endl << "3. Main Menu"<< endl;
+           cout << "Enter 1 for Login,2 for Registration and 3 for main menu: ";
+           cin >> option1;
+           cin.ignore(); // Clear the newline character from the input buffer
+           if (option1 == 1) {
+               parentlogin_here();
+           } else if (option1 == 2) {
+               parent_registration();
+           }else if(option1 ==3){
+                   main();
+               }
+           
+           else {
+               cout << "Please enter a valid option!" << endl;
+               login_registerparent();
+           }
+        cout << "Press Enter to return to the Login and Registration...";
+        cin.ignore();
+        cin.get();
     }
+   
+    
 }
-void parent_registration() {
-    Details temp;
 
+void parent_registration() {//parent registration function
+    Details temp;
+    cout << "Hello Parent! This is your Registration Screen.Enter your details please. " << endl;
     cout << "Enter full name: ";
-    cin.ignore(); // Ignore any leftover newline character in the input buffer
-    getline(cin, temp.name);
+    getline(cin, temp.name);//using getline to include spaces as string
 
     cout << "Enter gender (M for male / F for female): ";
     cin >> temp.gender;
@@ -88,54 +99,75 @@ void parent_registration() {
 
     parentinfo.push_back(temp);
 
-    cout << "\nPlease check registered details" << endl;
-    for (const auto& parent : parentinfo) {
-        cout << "Full name: " << parent.name << endl;
-        cout << "Gender: " << parent.gender << endl;
-        cout << "Date of Birth: " << parent.DOB << endl;
-        cout << "Contact number: " << parent.contact << endl;
-        cout << "Visa card number: " << parent.visacardnumber << endl;
-        cout << "Visa card expiry date: " << parent.visacardexpiry << endl;
-        cout << "Username: " << parent.username << endl;
-        cout << "--------------------------------------" << endl;
-    }
-}
-void parentlogin_here() {
-    string username, password;
-    cout << "Enter your username: ";
-    cin >> username;
-    cin.ignore(); // Clear the newline character from the input buffer
-
-    bool user_found = false;
-    for (auto& parent : parentinfo) {
-        if (username == parent.username) {
-            user_found = true;
-            cout << "Enter your password: ";
-            getline(cin, password);
-
-            if (password == parent.password) {
-                cout << "Hello! " << parent.name << ", you logged in successfully!" << endl;
-            } else {
-                cout << "Incorrect password! Please try again." << endl;
-                // Ideally, you should implement a limited number of retries to avoid infinite loop
-            }
-            break;
+    cout << "\nPlease check registered details" << endl;// displaying registered screen
+    for (int i = 0; i < parentinfo.size(); i++) {
+        if (temp.username == parentinfo[i].username) {
+            cout << "Full name: " << parentinfo[i].name << endl;
+            cout << "Gender: " << parentinfo[i].gender << endl;
+            cout << "Date of Birth: " << parentinfo[i].DOB << endl;
+            cout << "Contact number: " << parentinfo[i].contact << endl;
+            cout << "Visa card number: " << parentinfo[i].visacardnumber << endl;
+            cout << "Visa card expiry date: " << parentinfo[i].visacardexpiry << endl;
+            cout << "Username: " << parentinfo[i].username << endl;
+            cout << "--------------------------------------" << endl;
         }
     }
-void admin_login() {
+    
+}
+void parentlogin_here() {//parent login function
     string username, password;
-    cout << "Enter admin username: ";
-    cin >> username;
-    cin.ignore(); // Clear the newline character from the input buffer
-    cout << "Enter admin password: ";
-    getline(cin, password);
+    const int maxAttempts = 3;
+    bool loginSuccessful = false;
 
-    if (username == ADMIN_USERNAME && password == ADMIN_PASSWORD) {
-        cout << "Admin login successful!" << endl;
-        // Placeholder for admin functionalities
-        cout << "Welcome, Admin! [Admin functionalities will be implemented here]" << endl;
-    } else {
-        cout << "Invalid admin credentials. Please try again." << endl;
+    for (int attempts = 0; attempts < maxAttempts; ++attempts) {//implementing
+        cout << "Enter your username: ";
+        cin >> username;
+        cin.ignore(); // Clear the newline character from the input buffer
+
+        bool user_found = false;
+        for (auto& parent : parentinfo) {
+            if (username == parent.username) {
+                user_found = true;
+                cout << "Enter your password: ";
+                getline(cin, password);
+                if (password == parent.password) {
+                    cout << "Hello! " << parent.name << ", you logged in successfully!" << endl;
+                    Recent a;
+                    a.name = parent.name;
+                    a.contact = parent.contact;
+                    recentparent.push_back(a);
+                    printHeading();
+                    cout << "**Welcome to Parent screen**" << endl;
+                    cout << "1. Order food\n2. Weekly Menu\n3. Today's Menu\n4. Complaint Screen\n";
+                    cout << "Enter the task you want to do: ";
+                    int task;
+                    cin >> task;
+                    switch (task) {
+                        case 1: orderscreen(); break;
+                        case 2: wholemenu(); break;
+                        case 3: todays_menu(); break;
+                        case 4: parentcomplaint(); break;
+                        default: cout << "Invalid task selected." << endl; break;
+                    }
+                    loginSuccessful = true;
+                    break;
+                } else {
+                    cout << "Incorrect password! Please try again." << endl;
+                }
+            }
+        }
+
+        if (!user_found) {
+            cout << "You have entered the wrong username! Please try again!" << endl;
+        }
+
+        if (loginSuccessful) {
+            break;
+        }
+
+        if (attempts == maxAttempts - 1) {
+            cout << "You exceeded the login try limit! Please try again later!" << endl;
+        }
     }
 }
 void contact_details() {
@@ -152,32 +184,30 @@ int getCurrentDayOfWeek() {
     tm *ltm = localtime(&now);
     return ltm->tm_wday;  // tm_wday is 0 for Sunday, 1 for Monday, ..., 6 for Saturday
 }
-void weekly_menu() {
+void wholemenu(){// functions dispalying whole menu
+    for (int day = 0; day < NUM_DAYS; day++) {
+        cout << weekdays[day] << ":" << endl;
+        cout << "+------------------------------+" << endl;
+        for (int category = 0; category < NUM_CATEGORIES; category++) {
+            cout << "| " << left << setw(10) << categories[category] << ": " << menu[day][category].name << " ($" << fixed << setprecision(2) << menu[day][category].price << ")" << endl;
+        }
+        cout << "+------------------------------+" << endl;
+        cout << "| Drinks:                      |" << endl;
+        for (int drink = 0; drink < NUM_DRINKS; drink++) {
+            cout << "| " << left << setw(20) << drinks[drink] << ": $" << fixed << setprecision(2) << drinkPrices[drink] << endl;
+        }
+        cout << "+------------------------------+" << endl << endl;
+    }
+    
+}
+void todays_menu() {//function displays present day menu
     int currentDay = getCurrentDayOfWeek();
-
-    const int NUM_DAYS = 5;
-    const int NUM_CATEGORIES = 8;
-    const int NUM_DRINKS = 4;
-
-    const string categories[NUM_CATEGORIES] = { "Burger", "Pizza", "Sandwich", "Fries", "Eggs", "Noodles", "Wraps", "Soup" };
-    const string drinks[NUM_DRINKS] = { "Fruit Juice", "Energy Drink", "Soft Drink", "Hydration Drink" };
-    const double drinkPrices[NUM_DRINKS] = { 2.50, 3.00, 2.00, 3.50 };
-    const string weekdays[NUM_DAYS] = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
-
-    MenuItem menu[NUM_DAYS][NUM_CATEGORIES] = {
-        {{"Classic Cheeseburger", 8.00}, {"Margherita Pizza", 10.00}, {"Grilled Chicken Sandwich", 9.00}, {"Sweet Potato Fries", 4.00}, {"Scrambled Eggs with smoked salmon", 7.00}, {"Pad Thai with shrimp", 12.00}, {"Greek Wrap", 8.00}, {"Tomato Basil Soup", 5.00}},
-        {{"BBQ Bacon Burger", 9.50}, {"Pepperoni Pizza", 11.00}, {"Turkey Club Sandwich", 8.50}, {"Curly Fries", 4.00}, {"Eggs Benedict", 9.00}, {"Spaghetti Carbonara", 11.00}, {"Buffalo Chicken Wrap", 8.50}, {"Chicken Noodle Soup", 6.00}},
-        {{"Mushroom Swiss Burger", 9.00}, {"Veggie Pizza", 10.00}, {"BLT Sandwich", 7.50}, {"Parmesan Truffle Fries", 5.00}, {"Omelette with spinach, mushrooms, and goat cheese", 7.00}, {"Ramen with pork", 12.00}, {"Falafel Wrap", 7.50}, {"Butternut Squash Soup", 6.00}},
-        {{"Spicy Black Bean Burger", 8.50}, {"Hawaiian Pizza", 11.00}, {"Roast Beef Sandwich", 9.00}, {"Waffle Fries", 4.50}, {"Shakshuka", 8.00}, {"Lo Mein with chicken", 11.00}, {"BBQ Pulled Pork Wrap", 8.50}, {"French Onion Soup", 6.50}},
-        {{"Blue Cheese Burger", 9.50}, {"Meat Lovers Pizza", 12.00}, {"Caprese Sandwich", 8.00}, {"Chili Cheese Fries", 5.00}, {"Frittata", 7.50}, {"Pesto Pasta", 10.00}, {"Grilled Veggie Wrap", 7.50}, {"Minestrone Soup", 6.00}}
-    };
-
+    cout << "+==============================+" << endl;//heading
+    cout << "|          Today's Menu         |" << endl;
     cout << "+==============================+" << endl;
-    cout << "|          Weekly Menu         |" << endl;
-    cout << "+==============================+" << endl;
-
+    
     if (currentDay >= 1 && currentDay <= 5) { // Monday to Friday
-        string currentWeekday = weekdays[currentDay - 1];
+        string currentWeekday = weekdays[currentDay - 1];//displaying food items
         cout << currentWeekday << ":" << endl;
         cout << "+------------------------------+" << endl;
         for (int category = 0; category < NUM_CATEGORIES; category++) {
@@ -186,7 +216,7 @@ void weekly_menu() {
     } else {
         cout << "Today is not a weekday. Please check the menu on a weekday." << endl;
     }
-
+    
     cout << "+------------------------------+" << endl;
     cout << "| Drinks:                      |" << endl;
     cout << "+------------------------------+" << endl;
@@ -194,6 +224,7 @@ void weekly_menu() {
         cout << "| " << drinks[drink] << ": $" << drinkPrices[drink] << endl;
     }
     cout << "+------------------------------+" << endl;
+    
 }
 void display_discounts() {
     cout << "+==============================+" << endl;
@@ -216,7 +247,7 @@ void password_check(Details& temp) {
         password_check(temp); // Recursive call to try again
     }
 }  
-void staff_registration() {
+void staff_registration() {//function for staff to register
     Details temp1;
 
     cout << "Enter full name: ";
@@ -259,48 +290,107 @@ void staff_registration() {
     }
 }
 
-void stafflogin_here() {
+
+void stafflogin_here() {//login function for staff
     string username, password;
-    cout << "Enter your username: ";
-    cin >> username;
-    cin.ignore(); // Clear the newline character from the input buffer
+    const int maxAttempts = 3;
+    bool loginSuccessful = false;
 
-    bool user_found = false;
-    for (auto& staff : staffinfo) {
-        if (username == staff.username) {
-            user_found = true;
-            cout << "Enter your password: ";
-            getline(cin, password);
+    // Loop for login attempts
+    for (int attempts = 0; attempts < maxAttempts; ++attempts) {
+        cout << "Enter your username: ";
+        cin >> username;
+        cin.ignore(); // Clear the newline character from the input buffer
 
-            if (password == staff.password) {
-                cout << "Hello! " << staff.name << ", you logged in successfully!" << endl;
-            } else {
-                cout << "Incorrect password! Please try again." << endl;
-                // Ideally, you should implement a limited number of retries to avoid infinite loop
+        bool user_found = false;
+
+        // Loop through staffinfo to find matching username
+        for (auto& staff : staffinfo) {
+            if (username == staff.username) {
+                user_found = true;
+                cout << "Enter your password: ";
+                getline(cin, password);
+
+                // Check if password matches
+                if (password == staff.password) {
+                    cout << "Hello! " << staff.name << ", you logged in successfully!" << endl;
+
+                    // Add staff to recentstaff
+                    Recent a;
+                    a.name = staff.name;
+                    a.contact = staff.contact;
+                    recentstaff.push_back(a);
+
+                    // Print heading
+                    printHeading();
+
+                    // Display staff menu options in a loop
+                    while (true) {
+                        cout << "**Welcome to Staff screen**" << endl;
+                        cout << "1. Order food\n2. Weekly Menu\n3. Today's Menu\n4. Staff Complaint Screen\n5. Main Menu\n";
+                        cout << "Enter the task you want to do: ";
+                        int task;
+                        cin >> task;
+
+                        switch (task) {
+                            case 1: orderscreenstaff(); break;
+                            case 2: wholemenu(); break;
+                            case 3: todays_menu(); break;
+                            case 4: staffcomplaint(); break;
+                            case 5: return; // Exit to main menu
+                            default: cout << "You entered the wrong choice! Try Again!" << endl; break;
+                        }
+
+                        cout << "Press Enter to return to staff screen...";
+                        cin.ignore();
+                        cin.get();
+                    }
+
+                    loginSuccessful = true;
+                    break;
+                } else {
+                    cout << "Incorrect password! Please try again." << endl;
+                }
             }
-            break;
+        }
+
+        if (!user_found) {
+            cout << "You have entered the wrong username! Please try again!" << endl;
+        }
+
+        if (loginSuccessful) {
+            break; // Exit the login attempts loop if login is successful
+        }
+
+        if (attempts == maxAttempts - 1) {
+            cout << "You exceeded the login try limit! Please try again later!" << endl;
         }
     }
-
-    if (!user_found) {
-        cout << "You have entered the wrong username! Please try again!" << endl;
-        // Implement a limited number of retries to avoid infinite loop
-    }
 }
-
-void login_registerstaff() {
+void login_registerstaff() {//function for staff to login  or register
     int option1;
-    cout << "1. Login" << endl << "2. Registration" << endl;
-    cout << "Enter 1 for Login and 2 for Registration: ";
-    cin >> option1;
-    cin.ignore(); // Clear the newline character from the input buffer
-    if (option1 == 1) {
-        stafflogin_here();
-    } else if (option1 == 2) {
-        staff_registration();
-    } else {
-        cout << "Please enter a valid option!" << endl;
-        login_registerstaff();
+    while (true) {
+        cout << "1. Login" << endl << "2. Registration" << endl << "3. Main Menu"<< endl;
+            cout << "Enter 1 for Login,2 for Registration and 3 for Main Menu: ";
+            cin >> option1;
+            cin.ignore(); // Clear the newline character from the input buffer
+            if (option1 == 1) {
+                stafflogin_here();
+            } else if (option1 == 2) {
+                staff_registration();
+            }
+            else if (option1 == 3){
+                main();
+            }
+            else {
+                cout << "Please enter a valid option!" << endl;
+                login_registerstaff();
+            }
+        cout << "Press Enter to return to the Login and Registration...";
+        cin.ignore();
+        cin.get();
     }
+    
 }
+
 
