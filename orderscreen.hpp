@@ -31,6 +31,7 @@ extern vector<Bill> savedOrders;           // Global vector for all orders
 
 // Function prototypes
 void orderscreen();
+void orderscreenstaff();
 void paymentOption(Bill &bill);
 void applyDiscount(Bill &bill);
 void showOrderConfirmation(const Bill &bill);
