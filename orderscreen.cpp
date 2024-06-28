@@ -123,3 +123,68 @@ void paymentOption(Bill &bill) {
         }
     } while (true);
 }
+void orderscreenstaff() {
+    int choice, quantity;
+    Bill bill;
+
+    bill.total = 0.0;
+    bill.date = __DATE__;
+    bill.orderby = "Staff";
+
+    cout << "**Welcome to Order Screen**" << endl;
+    cout << "Enter Parent's Name:";
+    cin.ignore();
+    getline(cin, bill.parentName);
+    cout << "Enter Parent's Contact:";
+    getline(cin, bill.parentContact);
+
+    cout << "Today's Menu:" << endl;
+    todays_menu();
+
+    do {
+        cout << "Select Item you want to Order (1-8 for food, 9-12 for drinks, 0 to finish):" << endl;
+        cout << "1. Burger\n2. Pizza\n3. Sandwich\n4. Fries\n5. Eggs\n6. Noodles\n7. Wrap\n8. Soup\n";
+        cout << "9. Fruit Juice\n10. Energy Drink\n11. Soft Drink\n12. Hydration Drink\n";
+        cin >> choice;
+
+        if (choice == 0) break;
+
+        if (choice < 1 || choice > 12) {
+            cout << "Invalid choice. Please try again." << endl;
+            continue;
+        }
+
+        cout << "Enter Quantity:" << endl;
+        cin >> quantity;
+
+        if (quantity <= 0) {
+            cout << "Invalid quantity. Please enter a positive number." << endl;
+            continue;
+        }
+
+        int currentDay = getCurrentDayOfWeek();
+        if (currentDay < 1 || currentDay > 5) {
+            cout << "Today is not a weekday. Cannot place an order." << endl;
+            return;
+        }
+
+        if (choice >= 1 && choice <= 8) {
+            MenuItem orderedItem = menu[currentDay - 1][choice - 1];
+            bill.items.push_back({orderedItem.name, orderedItem.price, quantity, __DATE__, bill.parentName, bill.parentContact, bill.orderby});
+            bill.total += orderedItem.price * quantity;
+        } else if (choice >= 9 && choice <= 12) {
+            int drinkIndex = choice - 9;
+            bill.items.push_back({drinks[drinkIndex], drinkPrices[drinkIndex], quantity, __DATE__, bill.parentName, bill.parentContact, bill.orderby});
+            bill.total += drinkPrices[drinkIndex] * quantity;
+        }
+
+    } while (choice != 0);
+
+    if (bill.items.empty()) {
+        cout << "No items ordered. Exiting order screen." << endl;
+        return;
+    }
+
+    paymentOption(bill);
+}
+
