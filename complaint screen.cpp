@@ -1,4 +1,7 @@
+#include "introduction.hpp"
+#include "adminscreen.hpp"
 #include "complaintscreen.hpp"
+#include "orderscreen.hpp"
 void lodgecomplaint() {//function to lodgecomplaint
     if (parentinfo.empty()) {
         cout << "No parent registered. Please register first." << endl;
