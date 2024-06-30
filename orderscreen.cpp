@@ -2,10 +2,6 @@
 #include "adminscreen.hpp"
 #include "complaintscreen.hpp"
 #include "orderscreen.hpp"
-
-vector<Bill> pendingPaymentOrders;
-vector<Bill> savedOrders;
-
 void orderscreen() {
     int choice, quantity;
     Bill bill;
