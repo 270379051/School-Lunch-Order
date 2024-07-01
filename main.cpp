@@ -1,20 +1,11 @@
-//
-//  main.cpp
-//  introduction
-//
-//  Created by Harshdeep Singh on 15/06/2024.
-//
-
 #include "introduction.hpp"
 #include "adminscreen.hpp"
-#include "complaintscreen.hpp"
-#include "orderscreen.hpp"
 int main() {
     while (true) {
         printHeading();
         list_options();
         
-        int selected_option = get_option(); // Get the user's task choice
+        int selected_option = get_option();
         switch (selected_option) {
             case 1:
                 printHeading();
@@ -36,9 +27,12 @@ int main() {
                 printHeading();
                 login_registerstaff();
                 break;
-            case 6:
-                printHeading();
+            case 6:printHeading();
                 admin_login();
+                break;
+            case 7:
+                printHeading();
+                contact_details();
                 break;
             default:
                 cout << "Invalid option!" << endl;
@@ -49,6 +43,5 @@ int main() {
         cin.ignore();
         cin.get();
     }
-
     return 0;
 }
