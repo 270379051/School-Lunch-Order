@@ -1,18 +1,18 @@
-#ifndef ADMINCREEN_HPP
-#define ADMINSCREEN_HPP
 
+#ifndef adminscreen_hpp
+#define adminscreen_hpp
 #include <iostream>
-#include <string>
 #include <vector>
+#include <string>
 using namespace std;
-const string ADMIN_USERNAME = "admin@thelunchspot";//admin username and password
+extern vector<string> reviewlist;
+const string ADMIN_USERNAME = "admin@thelunchspot";
 const string ADMIN_PASSWORD = "admin123";
-vector<string> reviewlist;// vector to store responded complaints
-void admin_login();
+void admin_login() ;
 void adminreview() ;
 void adminreviewstaff();
-void changeMenu();
+void changeMenu() ;
 void listOrdersFromSameDay();
 void pendingPayment();
-
-#endif
+int main();
+#endif /* adminscreen_hpp */
