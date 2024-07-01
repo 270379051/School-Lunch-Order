@@ -1,17 +1,15 @@
-#ifndef ORDERSCREEN_HPP
-#define ORDERSCREEN_HPP
 
+#ifndef orderscreen_hpp
+#define orderscreen_hpp
 #include <iostream>
-#include <string>
 #include <vector>
-
+#include <string>
 using namespace std;
-
 struct OrderItem {
     string name;
     double price;
     int quantity;
-    string date = __DATE__;
+    string date;
     string parentName;
     string parentContact;
     string orderby;
@@ -26,18 +24,16 @@ struct Bill {
     string orderby;
 };
 
-extern vector<Bill> pendingPaymentOrders;  // Global vector for pending payment orders
-extern vector<Bill> savedOrders;           // Global vector for all orders
-
-// Function prototypes
+extern vector<Bill> pendingPaymentOrders;
+extern vector<Bill> savedOrders;
 void orderscreen();
-void orderscreenstaff();
 void paymentOption(Bill &bill);
+void paymentOrder(const Bill &bill) ;
+void orders(const Bill &bill);
 void applyDiscount(Bill &bill);
 void showOrderConfirmation(const Bill &bill);
-void paymentOrder(const Bill &bill);
-void orders(const Bill &bill);
-void todays_menu();
-int getCurrentDayOfWeek();
+void pendingpaymentOrder(const Bill &bill);
+void todaysorders(const Bill &bill);
+void orderscreenstaff();
 
-#endif // ORDERSCREEN_HPP
+#endif /* orderscreen_hpp */
