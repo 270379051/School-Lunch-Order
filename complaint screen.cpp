@@ -1,5 +1,5 @@
 
-#include "complaintscreen.hpp"
+#include "complaint screen.hpp"
 #include "introduction.hpp"
 #include "adminscreen.hpp"
 vector<string> complaintlist;
