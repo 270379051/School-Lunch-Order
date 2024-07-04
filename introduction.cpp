@@ -1,6 +1,6 @@
 #include "introduction.hpp"
 #include "orderscreen.hpp"
-#include "complaintscreen.hpp"
+#include "complaint screen.hpp"
 #include "adminscreen.hpp"
 vector<Details> parentinfo;
 vector<Details> staffinfo;
